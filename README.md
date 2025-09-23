@@ -7,4 +7,6 @@
 ## Objectif
 L'objectif du projet est de me préparer et m'entrainer à la création d'une application [Spring](https://spring.io/projects/spring-boot) avec [Maven](https://maven.apache.org/).
 
-Cette application présentera une API REST et des intéraction de type CRUD avec une base de données [PostgreSQL](https://www.postgresql.org/).
+Cette application présentera une API REST et des intéraction de type CRUD avec une base de données avec H2 (Et par la suite [PostgreSQL](https://www.postgresql.org/)).
+
+L'application devra aussi présenter des class de tests unitaires à l'aide de [Sprint Boot JUnit](https://spring.io/guides/gs/testing-web).

@@ -1,5 +1,7 @@
-package org.formation;
+package org.formation.controllers;
 
+import org.formation.repositories.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,13 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 /// Elle est une combinaison de `@Controller` et `@ResponseBody`.
 @RestController
 public class HelloWorldController {
-
     /// L'annotation `@RequestMapping` est utilisée pour mapper une méthode de
     /// contrôleur à une requête HTTP. Elle définit l'URL et la méthode
     /// HTTP (GET, POST, PUT, DELETE, etc.) que la méthode de controller peut gérer.
-    @RequestMapping("/hello")
-    public String helloworld() {
-        return "Hello World";
+    @RequestMapping("/ping")
+    public String ping() {
+        return "En ligne";
     }
-
 }
