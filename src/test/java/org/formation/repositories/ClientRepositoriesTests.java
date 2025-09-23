@@ -1,4 +1,4 @@
-package org.formation.repositories.test;
+package org.formation.repositories;
 
 import org.formation.Main;
 import org.formation.entities.Client;
