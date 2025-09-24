@@ -13,6 +13,11 @@ import static org.junit.Assert.assertEquals;
 
 /// **L'annotation `@RunWith`** permet de spécifier le runner de test à utiliser pour exécuter les tests JUnit.
 /// Dans ce cas, nous utilisons `SpringJUnit4ClassRunner` pour intégrer les fonctionnalités de test de Spring avec JUnit.
+/// Cela nous permet d'utiliser des fonctionnalités telles que :
+/// - L'injection de dépendances avec `@Autowired`, comme pour le `ClientRepository`
+/// - La configuration du contexte de test avec `@SpringBootTest`, qui nous permet de spécifier les classes de configuration à utiliser pour le test
+/// - L'accès aux méthodes de repository sans avoir à les instancier manuellement, comme pour la méthode `repository.save`
+/// - La gestion des exceptions qui peuvent être levées pendant l'exécution du test, comme pour les assertions avec `assertEquals`
 ///
 /// **L'annotation `@SpringBootTest`** permet de configurer le contexte de test Spring Boot.
 /// Elle permet de spécifier les classes de configuration à utiliser pour le test, ainsi que d'activer certaines fonctionnalités de test comme l'auto-configuration.
