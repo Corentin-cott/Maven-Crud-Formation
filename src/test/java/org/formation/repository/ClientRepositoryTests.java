@@ -1,7 +1,7 @@
-package org.formation.repositories;
+package org.formation.repository;
 
 import org.formation.Main;
-import org.formation.entities.Client;
+import org.formation.model.Client;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package org.formation.repositories;
+package org.formation.repository;
 
-import org.formation.entities.Client;
+import org.formation.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /// Cette interface définit un repository pour les clients, en étendant les fonctionnalités de JpaRepository.

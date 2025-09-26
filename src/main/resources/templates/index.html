@@ -1,9 +1,13 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Ping</title>
+    <title>Index</title>
 </head>
 <body>
-<h1 th:text="${message}">Message</h1>
+    <div th:fragment="contenu">
+        <p>L'application est en ligne</p>
+    </div>
 </body>
 </html>

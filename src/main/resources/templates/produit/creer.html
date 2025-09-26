@@ -1,0 +1,24 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div th:fragment="contenu">
+        <h1>Créer un produit</h1>
+        <form th:method="post">
+            <label for="nom">Nom :</label>
+            <input id="nom" name="nom" type="text" th:value="placeholder"><br><br>
+
+            <label for="prix">Prix unitaire HT :</label>
+            <input id="prix" name="prix" type="number" step="0.01" th:value="placeholder">€<br><br>
+
+            <label for="stock">Stock :</label>
+            <input id="stock" name="stock" type="number" th:value="placeholder"><br><br>
+            <input type="submit" value="Créer">
+        </form>
+    </div>
+</body>
+</html>
