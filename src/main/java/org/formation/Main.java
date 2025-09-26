@@ -13,5 +13,6 @@ public class Main {
     /// Pour lancer Spring, il faut utiliser `SpringApplication.run`.
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+        System.out.println("Spring Boot Application launched");
     }
 }

@@ -2,7 +2,6 @@ package org.formation.repositories;
 
 import org.formation.Main;
 import org.formation.entities.Client;
-import org.formation.repositories.ClientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 /// Elle permet de spécifier les classes de configuration à utiliser pour le test, ainsi que d'activer certaines fonctionnalités de test comme l'auto-configuration.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Main.class)
-public class ClientRepositoriesTests {
+public class ClientRepositoryTests {
     /// Ce bout de code permet d'injecter automatiquement une instance de `ClientRepository` dans le test,
     /// ce qui nous permet d'accéder aux méthodes de repository sans avoir à les instancier manuellement.
     @Autowired
