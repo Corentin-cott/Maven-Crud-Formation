@@ -8,12 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class ProduitController {
 
     @Autowired
     private ProduitRepository produitRepository;
+
+    @RequestMapping("/produit/liste")
+    public String listProduct(Model model) {
+        List<Produit> produits = produitRepository.findAll();
+        System.out.println("Produits trouvés par 'findAll()' : " + produits);
+        model.addAttribute("produits", produits);
+        return "produit/liste";
+    }
 
     @RequestMapping("/produit/creer")
     public String createProductForm() {
@@ -49,12 +58,6 @@ public class ProduitController {
     @RequestMapping("/produit/suprimer")
     public String deleteProduct(Model model) {
         return "produit/suprimer";
-    }
-
-    @RequestMapping("/produit/liste")
-    public String listProduct(Model model) {
-        model.addAttribute("product_id", "1");
-        return "produit/liste";
     }
 
 }

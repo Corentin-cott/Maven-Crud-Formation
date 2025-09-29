@@ -8,9 +8,20 @@
         <header th:insert="fragments/header"></header>
         <div>
             <h1>Liste des produits</h1>
-            <p>Nom : <span th:text="${nom}">Nom</span></p>
-            <p>Prix : <span th:text="${prix}">Prix</span></p>
-            <p>Stock : <span th:text="${stock}">Stock</span></p>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                </tr>
+                <tr th:each="produit : ${produits}">
+                    <td th:text="${produit.id}">Id</td>
+                    <td th:text="${produit.nom}">Nom</td>
+                    <td th:text="${produit.prix}">Prix</td>
+                    <td th:text="${produit.stock}">Stock</td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
