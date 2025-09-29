@@ -3,9 +3,11 @@ package org.formation.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "produit")
 public class Produit {
     @Id
     @GeneratedValue
@@ -41,6 +43,7 @@ public class Produit {
     public Integer getStock() {
         return stock;
     }
+
 
     public void setStock(Integer stock) {
         this.stock = stock;

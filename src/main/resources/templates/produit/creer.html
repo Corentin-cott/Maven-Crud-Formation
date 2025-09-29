@@ -1,24 +1,24 @@
-<!-- index.html -->
-
+<!-- ./produit/creer.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Index</title>
-</head>
-<body>
-    <div th:fragment="contenu">
-        <h1>Créer un produit</h1>
-        <form th:method="post">
-            <label for="nom">Nom :</label>
-            <input id="nom" name="nom" type="text" th:value="placeholder"><br><br>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Créer un produit</title>
+    </head>
+    <body>
+        <header th:insert="fragments/header"></header>
+        <div>
+            <h1>Créer un produit</h1>
+            <form th:method="post" th:action="@{creer}">
+                <label for="produitNom">Nom :</label>
+                <input id="produitNom" name="produitNom" type="text" th:value="placeholder"><br><br>
 
-            <label for="prix">Prix unitaire HT :</label>
-            <input id="prix" name="prix" type="number" step="0.01" th:value="placeholder">€<br><br>
+                <label for="produitPrix">Prix unitaire HT :</label>
+                <input id="produitPrix" name="produitPrix" type="number" step="0.01" th:value="placeholder" th:min="0">€<br><br>
 
-            <label for="stock">Stock :</label>
-            <input id="stock" name="stock" type="number" th:value="placeholder"><br><br>
-            <input type="submit" value="Créer">
-        </form>
-    </div>
-</body>
+                <label for="produitStock">Stock :</label>
+                <input id="produitStock" name="produitStock" type="number" th:value="placeholder" th:min="0"><br><br>
+                <input type="submit" value="Créer">
+            </form>
+        </div>
+    </body>
 </html>

@@ -1,0 +1,16 @@
+<!-- ./produit/creer.html -->
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Details du produit</title>
+    </head>
+    <body>
+        <header th:insert="fragments/header"></header>
+        <div>
+            <h1>Liste des produits</h1>
+            <p>Nom : <span th:text="${nom}">Nom</span></p>
+            <p>Prix : <span th:text="${prix}">Prix</span></p>
+            <p>Stock : <span th:text="${stock}">Stock</span></p>
+        </div>
+    </body>
+</html>
