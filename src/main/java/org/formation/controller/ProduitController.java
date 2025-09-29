@@ -16,24 +16,7 @@ public class ProduitController {
     @Autowired
     private ProduitRepository produitRepository;
 
-    @RequestMapping("/produit/liste")
-    public String listProduct(Model model) {
-        List<Produit> produits = produitRepository.findAll();
-        System.out.println("Produits trouvés par 'findAll()' : " + produits);
-        model.addAttribute("produits", produits);
-        return "produit/liste";
-    }
-
-    @RequestMapping("/produit/details/{productId}")
-    public String readProduct(Model model, @PathVariable Long productId) {
-        Produit produit = produitRepository.findById(productId).orElse(null);
-        if (produit == null) {
-            System.out.println("Produit n'existe pas !");
-            return "produit/liste";
-        }
-        model.addAttribute("produit", produit);
-        return "produit/details";
-    }
+    /* CREATE */
 
     @RequestMapping("/produit/creer")
     public String createProductForm() {
@@ -51,39 +34,75 @@ public class ProduitController {
         return "/index";
     }
 
-    @RequestMapping("/produit/modifier/{productId}")
-    public String updateProductForm(Model model, @PathVariable Long productId) {
-        Produit produit = produitRepository.findById(productId).orElse(null);
-        if (produit == null) {
-            return "produit/liste";
-        }
+    /* READ */
+
+    @RequestMapping("/produit/liste")
+    public String listProduct(Model model) {
+        List<Produit> produits = produitRepository.findAll();
+        model.addAttribute("produits", produits);
+        return "produit/liste";
+    }
+
+    @RequestMapping("/produit/details/{produitId}")
+    public String readProduct(Model model, @PathVariable Long produitId) {
+        Produit produit = findByIdOrFallback(model , produitId);
+        if (produit == null) { return  "produit/liste"; }
+
+        model.addAttribute("produit", produit);
+        return "produit/details";
+    }
+
+    /* UPDATE */
+
+    @RequestMapping("/produit/modifier/{produitId}")
+    public String updateProductForm(Model model, @PathVariable Long produitId) {
+        Produit produit = findByIdOrFallback(model , produitId);
+        if (produit == null) { return  "produit/liste"; }
+
         model.addAttribute("produit", produit);
         return "produit/modifier";
     }
 
     @PostMapping(path = "/produit/modifier")
     public String updateProduct(Model model, @RequestParam Long produitId, @RequestParam String produitNom, @RequestParam BigDecimal produitPrix, @RequestParam Integer produitStock) {
-        Produit produitModif = produitRepository.findById(produitId).orElse(null);
-        if (produitModif == null) {
-            System.out.println("Produit n'existe pas !");
-            return "/";
-        }
-        produitModif.setNom(produitNom);
-        produitModif.setPrix(produitPrix);
-        produitModif.setStock(produitStock);
-        produitRepository.save(produitModif);
+        Produit produit = findByIdOrFallback(model , produitId);
+        if (produit == null) { return  "produit/liste"; }
 
-        return "/index";
+        produit.setNom(produitNom);
+        produit.setPrix(produitPrix);
+        produit.setStock(produitStock);
+        produitRepository.save(produit);
+
+        List<Produit> produits = produitRepository.findAll();
+        model.addAttribute("produits", produits);
+        return "produit/liste";
     }
 
-    @RequestMapping("/produit/suprimer/{productId}")
-    public String deleteProduct(Model model, @PathVariable Long productId) {
-        Produit produit = produitRepository.findById(productId).orElse(null);
+    /* DELETE */
+
+    @RequestMapping("/produit/supprimer/{produitId}")
+    public String deleteProduct(Model model, @PathVariable Long produitId) {
+        Produit produit = findByIdOrFallback(model , produitId);
+        if (produit == null) { return  "produit/liste"; }
+
+        produitRepository.delete(produit);
+
+        List<Produit> produits = produitRepository.findAll();
+        model.addAttribute("produits", produits);
+        return "produit/liste";
+    }
+
+    /* PRIVATE METHODS */
+
+    private Produit findByIdOrFallback(Model model, @PathVariable Long produitId) {
+        Produit produit = produitRepository.findById(produitId).orElse(null);
         if (produit == null) {
-            return "/";
+            System.out.println("Produit n'existe pas !");
+            List<Produit> produits = produitRepository.findAll();
+            model.addAttribute("produits", produits);
+            return null;
         }
-        model.addAttribute("produit", produit);
-        return "/index";
+        return produit;
     }
 
 }
