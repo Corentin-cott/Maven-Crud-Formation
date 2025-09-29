@@ -31,7 +31,9 @@ public class ProduitController {
         nouveauProduit.setStock(produitStock);
         produitRepository.save(nouveauProduit);
 
-        return "/index";
+        List<Produit> produits = produitRepository.findAll();
+        model.addAttribute("produits", produits);
+        return "produit/liste";
     }
 
     /* READ */
