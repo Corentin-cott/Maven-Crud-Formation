@@ -44,9 +44,13 @@ public class ProduitController {
         return "produit/details";
     }
 
-    @RequestMapping("/produit/details")
-    public String readProduct(Model model) {
-        model.addAttribute("product_id", "1");
+    @RequestMapping("/produit/details/{productId}")
+    public String readProduct(Model model, @PathVariable Long productId) {
+        Produit produit = produitRepository.findById(productId).orElse(null);
+        if (produit == null) {
+            return "produit/liste";
+        }
+        model.addAttribute("produit", produit);
         return "produit/details";
     }
 
