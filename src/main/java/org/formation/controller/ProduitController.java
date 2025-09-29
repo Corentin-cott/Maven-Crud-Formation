@@ -24,6 +24,17 @@ public class ProduitController {
         return "produit/liste";
     }
 
+    @RequestMapping("/produit/details/{productId}")
+    public String readProduct(Model model, @PathVariable Long productId) {
+        Produit produit = produitRepository.findById(productId).orElse(null);
+        if (produit == null) {
+            System.out.println("Produit n'existe pas !");
+            return "produit/liste";
+        }
+        model.addAttribute("produit", produit);
+        return "produit/details";
+    }
+
     @RequestMapping("/produit/creer")
     public String createProductForm() {
         return "produit/creer";
@@ -31,37 +42,48 @@ public class ProduitController {
 
     @PostMapping(path = "/produit/creer")
     public String createProduct (Model model, @RequestParam String produitNom, @RequestParam BigDecimal produitPrix, @RequestParam Integer produitStock) {
-        model.addAttribute("nom", produitNom);
-        model.addAttribute("prix", produitPrix);
-        model.addAttribute("stock", produitStock);
-
         Produit nouveauProduit = new Produit();
         nouveauProduit.setNom(produitNom);
         nouveauProduit.setPrix(produitPrix);
         nouveauProduit.setStock(produitStock);
         produitRepository.save(nouveauProduit);
 
-        return "produit/details";
+        return "/index";
     }
 
-    @RequestMapping("/produit/details/{productId}")
-    public String readProduct(Model model, @PathVariable Long productId) {
+    @RequestMapping("/produit/modifier/{productId}")
+    public String updateProductForm(Model model, @PathVariable Long productId) {
         Produit produit = produitRepository.findById(productId).orElse(null);
         if (produit == null) {
             return "produit/liste";
         }
         model.addAttribute("produit", produit);
-        return "produit/details";
-    }
-
-    @RequestMapping("/produit/modifier")
-    public String updateProduct(Model model) {
         return "produit/modifier";
     }
 
-    @RequestMapping("/produit/suprimer")
-    public String deleteProduct(Model model) {
-        return "produit/suprimer";
+    @PostMapping(path = "/produit/modifier")
+    public String updateProduct(Model model, @RequestParam Long produitId, @RequestParam String produitNom, @RequestParam BigDecimal produitPrix, @RequestParam Integer produitStock) {
+        Produit produitModif = produitRepository.findById(produitId).orElse(null);
+        if (produitModif == null) {
+            System.out.println("Produit n'existe pas !");
+            return "/";
+        }
+        produitModif.setNom(produitNom);
+        produitModif.setPrix(produitPrix);
+        produitModif.setStock(produitStock);
+        produitRepository.save(produitModif);
+
+        return "/index";
+    }
+
+    @RequestMapping("/produit/suprimer/{productId}")
+    public String deleteProduct(Model model, @PathVariable Long productId) {
+        Produit produit = produitRepository.findById(productId).orElse(null);
+        if (produit == null) {
+            return "/";
+        }
+        model.addAttribute("produit", produit);
+        return "/index";
     }
 
 }

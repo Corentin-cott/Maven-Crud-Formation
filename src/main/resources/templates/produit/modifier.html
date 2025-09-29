@@ -1,0 +1,27 @@
+<!-- ./produit/creer.html -->
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Créer un produit</title>
+    </head>
+    <body>
+        <header th:insert="fragments/header"></header>
+        <div>
+            <h1>Modifier un produit</h1>
+            <form th:method="post" th:action="@{/produit/modifier}">
+                <label for="produitId">ID :</label>
+                <input id="produitId" name="produitId" type="text" th:value="${produit.id}" readonly><br><br>
+
+                <label for="produitNom">Nom :</label>
+                <input id="produitNom" name="produitNom" type="text" th:value="${produit.nom}"><br><br>
+
+                <label for="produitPrix">Prix unitaire HT :</label>
+                <input id="produitPrix" name="produitPrix" type="number" step="0.01" th:value="${produit.prix}" th:min="0.01">€<br><br>
+
+                <label for="produitStock">Stock :</label>
+                <input id="produitStock" name="produitStock" type="number" th:value="${produit.stock}" th:min="0"><br><br>
+                <input type="submit" value="Modifier">
+            </form>
+        </div>
+    </body>
+</html>
