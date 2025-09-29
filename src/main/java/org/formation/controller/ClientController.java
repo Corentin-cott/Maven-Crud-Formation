@@ -1,7 +1,7 @@
-package org.formation.controllers;
+package org.formation.controller;
 
-import org.formation.entities.Client;
-import org.formation.repositories.ClientRepository;
+import org.formation.model.Client;
+import org.formation.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package org.formation.controllers;
+package org.formation.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package org.formation.entities;
+package org.formation.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
