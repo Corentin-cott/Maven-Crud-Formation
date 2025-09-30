@@ -36,6 +36,22 @@ public class ProduitController {
         return "produit/liste";
     }
 
+    @RequestMapping(path = "/produit/dupliquer/{produitId}")
+    public String dupeProduct(Model model, @PathVariable Long produitId) {
+        Produit produit = findByIdOrFallback(model , produitId);
+        if (produit == null) { return  "produit/liste"; }
+
+        Produit nouveauProduit = new Produit();
+        nouveauProduit.setNom(produit.getNom());
+        nouveauProduit.setPrix(produit.getPrix());
+        nouveauProduit.setStock(produit.getStock());
+        produitRepository.save(nouveauProduit);
+
+        List<Produit> produits = produitRepository.findAll();
+        model.addAttribute("produits", produits);
+        return "produit/liste";
+    }
+
     /* READ */
 
     @RequestMapping("/produit/liste")

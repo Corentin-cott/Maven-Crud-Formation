@@ -23,7 +23,11 @@ a:hover, input[type="submit"]:hover {
     background: lightblue;
 }
 
-.red_hover:hover {
+.green_bg_hover:hover {
+    background: #89dc89;
+}
+
+.red_bg_hover:hover {
     background: #e3a1a1;
 }
 
