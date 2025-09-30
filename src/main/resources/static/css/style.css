@@ -22,3 +22,12 @@ a, input[type="submit"] {
 a:hover, input[type="submit"]:hover {
     background: lightblue;
 }
+
+.red_hover:hover {
+    background: #e3a1a1;
+}
+
+th, td {
+    min-width: 6em;
+    text-align: center;
+}
